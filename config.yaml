@@ -1,0 +1,14 @@
+#config.yaml
+
+database:
+  name: <unknown>
+  user: <unknown>
+
+paths:
+  export_dir: ./exports/
+  import_dir: ./imports/
+
+settings:
+  debug_mode: false
+  max_items: 1000
+

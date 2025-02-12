@@ -36,3 +36,25 @@ def remove_item (df, item_id):
 def display_inventory(df):
     print("\nCurrent Inventoyr:")
     print(df.to_string(index=False))
+
+def main():
+    inventory = create_inventory()
+
+    #examples
+    inventory = add_item(inventory, "laptop", 10,)
+    inventory = add_item(inventory, "mouse", 6)
+    inventory = add_item(inventory, "keyboard", 37,)
+
+    display_inventory(inventory)
+
+    # update inventory
+    inventory = update_quantity(inventory, 1, 298)
+    print("\nAfter updating laptop quantity:")
+    display_inventory(inventory)
+
+    #Remove an item
+    inventory = remove_item(inventory, 2)
+    display_inventory(inventory)
+
+if __name__ == "__main__":
+    main()

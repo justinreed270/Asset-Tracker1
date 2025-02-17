@@ -37,8 +37,26 @@ def display_inventory(df):
     print("\nCurrent Inventoyr:")
     print(df.to_string(index=False))
 
+# Save inventory to CSV
+def save_to_csv(df, filename='inventory.csv'):
+    df.to_csv(filename, index=False)
+    print(f"\nInventory saved to {filename}")
+
+# Load inventory from CSV
+def load_from_csv(filename='inventory.csv'):
+    try:
+        # Try to read existing CSV file
+        return pd.read_csv(filename)
+    except (FileNotFoundError, pd.errors.EmptyDataError):
+        print(f"No existing inventory file found or empty file. Creating new inventory.")
+        # Create and save a new empty inventory
+        new_inventory = create_inventory()
+        save_to_csv(new_inventory, filename)
+        return new_inventory
+
+
 def main():
-    inventory = create_inventory()
+    inventory = load_from_csv(filename="inventory.csv")
 
     #examples
     inventory = add_item(inventory, "laptop", 10,)
@@ -48,13 +66,15 @@ def main():
     display_inventory(inventory)
 
     # update inventory
-    inventory = update_quantity(inventory, 1, 298)
-    print("\nAfter updating laptop quantity:")
-    display_inventory(inventory)
+    #inventory = update_quantity(inventory, 1, 298)
+   # print("\nAfter updating laptop quantity:")
+    #display_inventory(inventory)
 
     #Remove an item
-    inventory = remove_item(inventory, 2)
-    display_inventory(inventory)
+    #inventory = remove_item(inventory, 2)
+
+
+    save_to_csv(inventory)
 
 if __name__ == "__main__":
     main()
